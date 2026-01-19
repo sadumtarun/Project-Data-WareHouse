@@ -1,0 +1,211 @@
+-- CREATE DATABASE datawh;
+USE datawh;
+GO 
+
+-- SCHEMA - Folder inside a database that organizes tables and other.
+-- Creating Schemas
+/*
+CREATE SCHEMA bronze;
+GO
+CREATE SCHEMA silver;
+GO
+CREATE SCHEMA gold;
+GO
+*/
+
+------------------------------------- Creating Tables -------------------------------------
+
+IF OBJECT_ID ('bronze.crm_customer_info', 'U') IS NOT NULL
+	DROP TABLE bronze.crm_customer_info;
+CREATE TABLE bronze.crm_customer_info (
+    customer_id				  INT,
+    customer_key			  NVARCHAR(50),
+    customer_firstname		  NVARCHAR(50),
+    customer_lastname		  NVARCHAR(50),
+    customer_marital_status   NVARCHAR(50),
+    customer_gender			  NVARCHAR(50),
+    customer_create_date	  DATE
+);
+
+IF OBJECT_ID ('bronze.crm_product_info', 'U') IS NOT NULL
+	DROP TABLE bronze.crm_product_info;
+CREATE TABLE bronze.crm_product_info (
+    product_id        INT,
+    product_key       NVARCHAR(50),
+    product_nm        NVARCHAR(50),
+    product_cost      INT,
+    product_line      NVARCHAR(50),
+    product_start_dt  DATETIME,
+    product_end_dt    DATETIME
+);
+
+IF OBJECT_ID ('bronze.crm_sales_details', 'U') IS NOT NULL
+	DROP TABLE bronze.crm_sales_details;
+CREATE TABLE bronze.crm_sales_details (
+    sd_ord_num       NVARCHAR(50),
+    sd_product_key   NVARCHAR(50),
+    sd_customer_id   INT,
+    sd_order_dt  INT,
+    sd_ship_dt   INT,
+    sd_due_dt    INT,
+    sd_sales     INT,
+    sd_quantity  INT,
+    sd_price     INT
+);
+
+----------------------------------------------------------------------------------------------
+
+IF OBJECT_ID ('bronze.erp_customer', 'U') IS NOT NULL
+	DROP TABLE bronze.erp_customer;
+CREATE TABLE bronze.erp_customer (
+    cid        NVARCHAR(50),
+    birthdate  DATE,
+    gender     NVARCHAR(50)
+);
+
+IF OBJECT_ID ('bronze.erp_cntry', 'U') IS NOT NULL
+	DROP TABLE bronze.erp_cntry;
+CREATE TABLE bronze.erp_cntry (
+    cid      NVARCHAR(50),
+    country  NVARCHAR(50)
+);
+
+IF OBJECT_ID ('bronze.erp_category', 'U') IS NOT NULL
+	DROP TABLE bronze.erp_category;
+CREATE TABLE bronze.erp_category (
+    id                NVARCHAR(50),
+    category          NVARCHAR(50),
+    subcategory       NVARCHAR(50),
+    maintenance       NVARCHAR(50)
+);
+
+-------------------------------------- End of Table Creation-------------------------------------
+
+
+----------------------------------------- Bronze Layer ------------------------------------------
+
+---------------------------------- Loading customersys Tables -----------------------------------
+GO
+CREATE OR ALTER PROCEDURE bronze.load_bronze AS
+BEGIN
+	DECLARE @start_time DATETIME, @end_time DATETIME;
+
+	PRINT '------------------- Loading Bronze Layer -------------------';
+	PRINT '-------------------- Loading CRM Tables --------------------';
+
+	PRINT '>>> Truncategorying Table - bronze.crm_customer_info';
+
+------- Table 1 -------
+
+	SET @start_time = GETDATE();
+
+	TRUNCATE TABLE bronze.crm_customer_info;
+	BULK INSERT bronze.crm_customer_info
+	FROM 'P:\All P\DataWarehouse\Datasets\source_crm\customer_info.csv'
+	WITH (
+		FIRSTROW = 2,
+		FIELDTERMINATOR = ',',
+		TABLOCK
+	);
+
+	SET @end_time = GETDATE();
+	PRINT '> Loading Duration - ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' Seconds..'
+	PRINT('------------------------')
+
+------- Table 2 ---------
+
+	SET @start_time = GETDATE();
+
+	PRINT '>>> Truncategorying Table - bronze.crm_product_info';
+
+	TRUNCATE TABLE bronze.crm_product_info;
+	BULK INSERT bronze.crm_product_info
+	FROM 'P:\All P\DataWarehouse\Datasets\source_crm\product_info.csv'
+	WITH (
+		FIRSTROW = 2,
+		FIELDTERMINATOR = ',',
+		TABLOCK
+	);
+
+	PRINT '> Loading Duration - ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' Seconds..'
+	PRINT('------------------------')
+
+------- Table 3 -------
+
+	PRINT '>>> Truncategorying Table - bronze.crm_sales_details';
+
+	SET @start_time = GETDATE();
+
+	TRUNCATE TABLE bronze.crm_sales_details;
+	BULK INSERT bronze.crm_sales_details
+	FROM 'P:\All P\DataWarehouse\Datasets\source_crm\sales_details.csv'
+	WITH (
+		FIRSTROW = 2,
+		FIELDTERMINATOR = ',',
+		TABLOCK
+	);
+
+	PRINT '> Loading Duration - ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' Seconds..'
+	PRINT('------------------------')
+
+------------------------------------- Loading erp Tables -------------------------------------
+	
+	PRINT '------------------- Loading ERP Tables -------------------';
+	PRINT '>>> Truncategorying Table - bronze.erp_customer';
+
+------- Table 4 -------
+
+	SET @start_time = GETDATE();
+
+	TRUNCATE TABLE bronze.erp_customer;
+	BULK INSERT bronze.erp_customer
+	FROM 'P:\All P\DataWarehouse\Datasets\source_erp\customer.csv'
+	WITH (
+		FIRSTROW = 2,
+		FIELDTERMINATOR = ',',
+		TABLOCK
+	);
+
+	PRINT '> Loading Duration - ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' Seconds..'
+	PRINT('------------------------')
+
+------- Table 5 -------
+
+	PRINT '>>> Truncategorying Table - bronze.erp_cntry';
+
+	SET @start_time = GETDATE();
+
+	TRUNCATE TABLE bronze.erp_cntry
+	BULK INSERT bronze.erp_cntry
+	FROM 'P:\All P\DataWarehouse\Datasets\source_erp\cntry.csv'
+	WITH (
+		FIRSTROW = 2,
+		FIELDTERMINATOR = ',',
+		TABLOCK
+	);
+
+	PRINT '> Loading Duration - ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' Seconds..'
+	PRINT('------------------------')
+
+------- Table  6 -------
+
+	PRINT '>>> Truncategorying Table - bronze.erp_category';
+
+	SET @start_time = GETDATE();
+	TRUNCATE TABLE bronze.erp_category;
+	BULK INSERT bronze.erp_category
+	FROM 'P:\All P\DataWarehouse\Datasets\source_erp\category.csv'
+	WITH (
+		FIRSTROW = 2,
+		FIELDTERMINATOR = ',',
+		TABLOCK
+	);
+
+	PRINT '> Loading Duration - ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' Seconds..'
+	PRINT('------------------------')
+
+END
+
+GO
+EXEC bronze.load_bronze;
+
