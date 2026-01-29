@@ -1,0 +1,127 @@
+
+-------------------------------------------- Bronze Layer --------------------------------------------
+
+GO
+CREATE OR ALTER PROCEDURE bronze.load_bronze AS
+BEGIN
+	DECLARE @start_time DATETIME, @end_time DATETIME;
+
+PRINT '------------------- Loading Bronze Layer -------------------';
+PRINT '-------------------- Loading crm Tables --------------------';
+
+PRINT '>>> Truncating Table - bronze.crm_customer_info';
+
+------- Table 1 -------
+
+SET @start_time = GETDATE();
+
+TRUNCATE TABLE bronze.crm_customer_info;
+BULK INSERT bronze.crm_customer_info
+FROM 'P:\All P\DataWarehouse\Datasets\source_crm\customer_info.csv'
+WITH (
+	FIRSTROW = 2,
+	FIELDTERMINATOR = ',',
+	TABLOCK
+);
+
+SET @end_time = GETDATE();
+PRINT '> Loading Duration - ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' Seconds..'
+PRINT('------------------------')
+
+------- Table 2 ---------
+
+SET @start_time = GETDATE();
+
+PRINT '>>> Truncating Table - bronze.crm_product_info';
+
+TRUNCATE TABLE bronze.crm_product_info;
+BULK INSERT bronze.crm_product_info
+FROM 'P:\All P\DataWarehouse\Datasets\source_crm\product_info.csv'
+WITH (
+	FIRSTROW = 2,
+	FIELDTERMINATOR = ',',
+	TABLOCK
+);
+
+PRINT '> Loading Duration - ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' Seconds..'
+PRINT('------------------------')
+
+------- Table 3 -------
+
+PRINT '>>> Truncating Table - bronze.crm_sales_details';
+
+SET @start_time = GETDATE();
+
+TRUNCATE TABLE bronze.crm_sales_details;
+BULK INSERT bronze.crm_sales_details
+FROM 'P:\All P\DataWarehouse\Datasets\source_crm\sales_details.csv'
+WITH (
+	FIRSTROW = 2,
+	FIELDTERMINATOR = ',',
+	TABLOCK
+);
+
+PRINT '> Loading Duration - ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' Seconds..'
+PRINT('------------------------')
+
+------------------------------------- Loading erp Tables -------------------------------------
+
+PRINT '------------------- Loading erp Tables -------------------';
+PRINT '>>> Truncating Table - bronze.erp_customer';
+
+------- Table 4 -------
+
+SET @start_time = GETDATE();
+
+TRUNCATE TABLE bronze.erp_customer;
+BULK INSERT bronze.erp_customer
+FROM 'P:\All P\DataWarehouse\Datasets\source_erp\customer.csv'
+WITH (
+	FIRSTROW = 2,
+	FIELDTERMINATOR = ',',
+	TABLOCK
+);
+
+PRINT '> Loading Duration - ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' Seconds..'
+PRINT('------------------------')
+
+------- Table 5 -------
+
+PRINT '>>> Truncating Table - bronze.erp_cntry';
+
+SET @start_time = GETDATE();
+
+TRUNCATE TABLE bronze.erp_cntry
+BULK INSERT bronze.erp_cntry
+FROM 'P:\All P\DataWarehouse\Datasets\source_erp\cntry.csv'
+WITH (
+	FIRSTROW = 2,
+	FIELDTERMINATOR = ',',
+	TABLOCK
+);
+
+PRINT '> Loading Duration - ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' Seconds..'
+PRINT('------------------------')
+
+------- Table  6 -------
+
+PRINT '>>> Truncating Table - bronze.erp_category';
+
+SET @start_time = GETDATE();
+TRUNCATE TABLE bronze.erp_category;
+BULK INSERT bronze.erp_category
+FROM 'P:\All P\DataWarehouse\Datasets\source_erp\category.csv'
+WITH (
+	FIRSTROW = 2,
+	FIELDTERMINATOR = ',',
+	TABLOCK
+);
+
+PRINT '> Loading Duration - ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' Seconds..'
+PRINT('------------------------')
+
+END
+
+GO
+EXEC bronze.load_bronze;
+
