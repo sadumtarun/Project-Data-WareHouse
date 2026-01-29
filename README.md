@@ -31,12 +31,12 @@ The solution follows a layered data architecture (Bronze, Silver, Gold) to ensur
     │   └── erp_customer
     │
     ├── Gold Layer/
-    │   ├── dim_customers.sql
-    │   ├── dim_product.sql
-    │   └── fact_sales.sql
+    │   ├── dim_customers
+    │   ├── dim_product
+    │   └── fact_sales
     │
-    ├── validation/
-    │   ├── data_quality_checks.sql
+    ├── Validation/
+    │   ├── data_quality_checks
     │
 
 
