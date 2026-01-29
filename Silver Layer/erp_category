@@ -1,0 +1,11 @@
+
+--- Table - erp_category
+
+INSERT INTO silver.erp_category(
+id,
+category,
+subcategory,
+maintenance
+)
+SELECT id,  category, subcategory, maintenance
+FROM bronze.erp_category
