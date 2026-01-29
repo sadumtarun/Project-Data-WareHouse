@@ -11,23 +11,26 @@ The solution follows a layered data architecture (Bronze, Silver, Gold) to ensur
     │
     ├── README.md
     │
-    ├── docs/
+    ├── Docs/
     │   ├── architecture.png
-    │   ├── data_model.png
+    │   └── data_model.png
     │
-    ├── bronze/
-    │   ├── crm_customer_info.sql
-    │   ├── crm_sales_details.sql
-    │   ├── erp_customer.sql
-    │   ├── erp_product.sql
-    │   └── erp_country.sql
+    ├── Bronze Layer/
+    │   ├── All Files
+    │   ├── Schemas File
+    │   ├── 
+    │   ├── 
+    │   └── 
     │
-    ├── silver/
-    │   ├── silver_customer.sql
-    │   ├── silver_product.sql
-    │   └── silver_sales.sql
+    ├── Silver Layer/
+    │   ├── crm_customer_info
+    │   ├── crm_product_info
+    │   ├── crm_sales_details
+    |   ├── erp_category
+    |   ├── erp_cntry
+    │   └── erp_customer
     │
-    ├── gold/
+    ├── Gold Layer/
     │   ├── dim_customers.sql
     │   ├── dim_product.sql
     │   └── fact_sales.sql
