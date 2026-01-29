@@ -4,27 +4,48 @@ This project involves the design and implementation of an Enterprise Data Wareho
 
 The solution follows a layered data architecture (Bronze, Silver, Gold) to ensure data quality, scalability, and maintainability.
 
-## 🗒️ Project Tasks  
 
-- **Design Data Architecture**
+## 📂 Repository File Structure
+
+    sql-data-warehouse-project/
+    │
+    ├── README.md
+    │
+    ├── docs/
+    │   ├── architecture.png
+    │   ├── data_model.png
+    │
+    ├── bronze/
+    │   ├── crm_customer_info.sql
+    │   ├── crm_sales_details.sql
+    │   ├── erp_customer.sql
+    │   ├── erp_product.sql
+    │   └── erp_country.sql
+    │
+    ├── silver/
+    │   ├── silver_customer.sql
+    │   ├── silver_product.sql
+    │   └── silver_sales.sql
+    │
+    ├── gold/
+    │   ├── dim_customers.sql
+    │   ├── dim_product.sql
+    │   └── fact_sales.sql
+    │
+    ├── validation/
+    │   ├── data_quality_checks.sql
+    │
+
+
+## 🗒️ Project Tasks  
 
 - **Project Initilization**
 
+- **ETL Pipelines**
+
 - **Overarching Principles**
 
-- **Building Bronze Layer**  
-
-
-## 📐 Design Data Architecture
-
-**Data Architecture**
-
-<img width="600" height="450" alt="image" src="https://github.com/user-attachments/assets/2297cb89-2bb3-4173-955d-e0b83ce90698" />
-
-
-**Database layout**
-
-<img width="670" height="350" alt="image" src="https://github.com/user-attachments/assets/1a694dac-b1f7-40b6-aa49-1953e8411788" />
+- **Data Architecture**
 
 
 ## 🚧 Project Initilization
@@ -36,21 +57,17 @@ The solution follows a layered data architecture (Bronze, Silver, Gold) to ensur
 - **Build Gold Layer**
 
 
+## 🛠️ ETL Pipelines
+
+The ETL process was carefully crafted to move and transform data across the Medallion layers:
+
+**Extract from CSVs → Load to Bronze**
+
+**Transform & Cleanse → Load to Silver**
+
+**Model & Optimize → Load to Gold**
+
 ## ✒️ Overarching Principles
-
-### Table Naming Conventions
-
-- **Naming Convention for Bronze Layer**
-
-- **Naming Convention for Silver Layer**
-
-- **Naming Convention for Gold Layer**
-
-### Column Naming Conventions
-
-- **Surrogate Keys**
-
-- **Technical Columns**
 
 ### Rules
 
@@ -115,57 +132,64 @@ The solution follows a layered data architecture (Bronze, Silver, Gold) to ensur
 
 - **fact** → fact_sales
 
-- **agg** → agg_sales_week
+
+## 💡 Data Architecture
+
+The data structure outlines a **Medallion Architecture** **Bronze**, **Silver** & **Gold** layers.
+
+<img width="851" height="448" alt="Database Layout" src="https://github.com/user-attachments/assets/fd12fdc9-d5b7-4c7b-ae96-37322a0353c1" />
 
 
-## 🧱 Building Bronze Layer
+1. **Bronze Layer** - Acts as a landing zone. It stores the data exactly as it appears in the source (like CSV Files).
 
-### 🗪 Business Interaction with Clients / Source System Discussions
+2. **Silver Layer** - This is the "cleansing" stage where data is validated and made consistent.
 
-- **Business Environment and Ownership Roles**
-
-- **System Architecture & Technology Stack**
-
-- **Extract & Load**
+3. **Gold Layer** - The final refined stage, optimized for performance and specific business use cases.
 
 
-### Business Environment and Ownership Roles
-
-Who owns the data?
-
-What Business Process it supports?
-
-- Logisitcs, Customer Transcation, Supply Chain...
-
-System & Data Documentation from the Source System
-
-Data Model & Data Catalog
-
-- Description of the columns and the tables
 
 
-### System Architecture & Technology Stack
-
-How the Source System is storing the data?
-
-- AWS, Azure, SQL Server, Oracle
-
-What are the Integration Tools / Connectivity Capabilities?
-
-- How I'm going to get the data do the Source System offer APIs, Kafka or a direct connection.
 
 
-### Extract & Load
 
-Incremental vs Full Loads?
 
-Data Range & Historical Data Scope?
 
-- Complete Data or Specific Period Data...
 
-Authentication & Authorization?
 
-- Tokens, VPNs, SSH Keys...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
