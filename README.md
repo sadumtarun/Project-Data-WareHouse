@@ -7,9 +7,8 @@ The solution follows a layered data architecture (Bronze, Silver, Gold) to ensur
 
 ## 📂 Repository File Structure
 
-    sql-data-warehouse-project/
+    Project-Data-WareHouse
     │
-    ├── README.md
     │
     |
     ├── Datasets/
@@ -26,9 +25,11 @@ The solution follows a layered data architecture (Bronze, Silver, Gold) to ensur
     ├── Docs/
     │    ├── Data Architecture.png
     |    ├── Data Catelog.md
+    |    ├── Data Flow.png
     |    ├── Data Modeling.png
     │    └── Naming Conventions.md
-    │
+    |
+    |
     ├── Project Scripts
     |    |    |      └── Bronze Layer/
     │    |    |                ├── All Files
@@ -48,9 +49,7 @@ The solution follows a layered data architecture (Bronze, Silver, Gold) to ensur
     │             └── fact_sales
     │   
     │
-    ├── Validation/
-    │   ├── data_quality_checks
-    │
+    └── README.md
 
 
 ## 🗒️ Project Tasks  
