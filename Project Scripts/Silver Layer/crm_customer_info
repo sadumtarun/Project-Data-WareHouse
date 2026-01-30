@@ -1,0 +1,22 @@
+
+--- Table - crm_customer_info
+
+INSERT INTO silver.erp_customer(cid, birthdate, gender)
+SELECT
+	CASE
+		WHEN cid LIKE 'NAS%'
+		THEN SUBSTRING(cid, 4, LEN(cid))
+	ELSE cid
+END AS cid,
+
+	CASE
+		WHEN birthdate > GETDATE() THEN NULL
+	ELSE birthdate
+END AS birthdate,
+
+	CASE
+		WHEN UPPER(TRIM(gender)) IN ('F', 'FEMALE') THEN 'Female'
+		WHEN UPPER(TRIM(gender)) IN ('M', 'MALE') THEN 'Male'
+	ELSE 'NA'
+END AS gender
+FROM bronze.erp_customer
