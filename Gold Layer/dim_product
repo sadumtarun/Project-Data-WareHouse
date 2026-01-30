@@ -3,7 +3,7 @@
 
 CREATE OR ALTER VIEW gold.dim_product AS
 SELECT
-	ROW_NUMBER() OVER(ORDER BY pd.product_start_dt, pd.product_key) AS product_key,  -- Primary Key
+	ROW_NUMBER() OVER(ORDER BY pd.product_start_dt, pd.product_key) AS product_keys,  -- Primary Key
 	pd.product_id,
 	pd.product_key		AS product_number,
 	pd.product_nm		AS product_name,
