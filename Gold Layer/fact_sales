@@ -4,7 +4,7 @@
 CREATE VIEW gold.fact_sales AS
 SELECT
 	sls.sd_ord_num		AS order_number,
-	pd.product_key,
+	pd.product_keys,
 	cc.customer_keys,
 	sls.sd_order_dt		AS order_date,
 	sls.sd_ship_dt		AS ship_date,
