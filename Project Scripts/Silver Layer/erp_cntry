@@ -1,0 +1,13 @@
+
+--- Table - erp_cntry
+
+INSERT INTO silver.erp_cntry(cid, country)
+SELECT 
+REPLACE(cid, '-', '') AS cid,
+	CASE
+		WHEN UPPER(TRIM(country)) = 'DE' THEN 'Germany'
+		WHEN UPPER(TRIM(country)) IN ('US', 'USA') THEN 'United States'
+		WHEN UPPER(TRIM(country)) = '' OR country IS NULL THEN 'NA'
+	ELSE country
+END AS country
+FROM bronze.erp_cntry
