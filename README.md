@@ -1,4 +1,5 @@
 
+
 ![DWH - Poster](https://github.com/user-attachments/assets/062bfca5-f4c0-4a29-a13c-beaa77f15181)
 
 
@@ -101,48 +102,5 @@ The data structure outlines a **Medallion Architecture** **Bronze**, **Silver** 
 
 ## Links
 
-**[Datasets](Datasets) -** Project dataset (csv files).
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+**[Datasets](Datasets) -** Project CSV files.
 
