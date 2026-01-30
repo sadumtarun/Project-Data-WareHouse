@@ -11,29 +11,42 @@ The solution follows a layered data architecture (Bronze, Silver, Gold) to ensur
     │
     ├── README.md
     │
+    |
+    ├── Datasets/
+    |   |     └── CRM
+    |   |         ├── customer_info.csv
+    |   |         ├── product_info.csv
+    |   |         └── sales_details.csv
+    |   |
+    |   └── ERP
+    |       ├── category.csv
+    |       ├── cntry.csv
+    |       └── customer.csv
+    |
     ├── Docs/
-    │   ├── architecture.png
-    │   └── data_model.png
+    │    ├── Data Architecture.png
+    |    ├── Data Catelog.md
+    |    ├── Data Modeling.png
+    │    └── Naming Conventions.md
     │
-    ├── Bronze Layer/
-    │   ├── All Files
-    │   ├── Schemas File
-    │   ├── 
-    │   ├── 
-    │   └── 
-    │
-    ├── Silver Layer/
-    │   ├── crm_customer_info
-    │   ├── crm_product_info
-    │   ├── crm_sales_details
-    |   ├── erp_category
-    |   ├── erp_cntry
-    │   └── erp_customer
-    │
-    ├── Gold Layer/
-    │   ├── dim_customers
-    │   ├── dim_product
-    │   └── fact_sales
+    ├── Project Scripts
+    |    |    |      └── Bronze Layer/
+    │    |    |                ├── All Files
+    │    |    |                └── Schemas File
+    |    |    |  
+    │    |    └── Silver Layer/
+    |    |                ├── crm_customer_info
+    │    |                ├── crm_product_info
+    │    |                ├── crm_sales_details    
+    │    |                ├── erp_category
+    |    |                ├── erp_cntry
+    |    |                └── erp_customer
+    │    |
+    |    └── Gold Layer/
+    |             ├── dim_customers   
+    │             ├── dim_product
+    │             └── fact_sales
+    │   
     │
     ├── Validation/
     │   ├── data_quality_checks
