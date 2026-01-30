@@ -1,0 +1,20 @@
+
+
+--- Table - gold.fact_sales
+
+CREATE VIEW gold.fact_sales AS
+SELECT
+	sls.sd_ord_num		AS order_number,
+	pd.product_keys,
+	cc.customer_keys,
+	sls.sd_order_dt		AS order_date,
+	sls.sd_ship_dt		AS ship_date,
+	sls.sd_quantity		AS qunatity,
+	sls.sd_sales		AS sales,
+	sls.sd_price		AS price,
+	sls.sd_due_dt		AS due_date
+FROM silver.crm_sales_details sls
+LEFT JOIN gold.dim_product pd
+	ON sls.sd_product_key = pd.product_number
+LEFT JOIN gold.dim_customers cc
+	ON sls.sd_customer_id = cc.customer_id
