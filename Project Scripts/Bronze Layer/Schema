@@ -1,0 +1,78 @@
+
+CREATE DATABASE datawh;
+USE datawh;
+GO 
+
+-- SCHEMA - Folder inside a database that organizes tables and other.
+-- Creating Schemas
+
+CREATE SCHEMA bronze;
+GO
+CREATE SCHEMA silver;
+GO
+CREATE SCHEMA gold;
+GO
+
+
+------------------------------------- Creating Tables -------------------------------------
+
+IF OBJECT_ID ('bronze.crm_customer_info', 'U') IS NOT NULL
+	DROP TABLE bronze.crm_customer_info;
+CREATE TABLE bronze.crm_customer_info (
+    customer_id				  INT,
+    customer_key			  NVARCHAR(50),
+    customer_firstname		  NVARCHAR(50),
+    customer_lastname		  NVARCHAR(50),
+    customer_marital_status   NVARCHAR(50),
+    customer_gender			  NVARCHAR(50),
+    customer_create_date	  DATE
+);
+
+IF OBJECT_ID ('bronze.crm_product_info', 'U') IS NOT NULL
+	DROP TABLE bronze.crm_product_info;
+CREATE TABLE bronze.crm_product_info (
+    product_id        INT,
+    product_key       NVARCHAR(50),
+    product_nm        NVARCHAR(50),
+    product_cost      INT,
+    product_line      NVARCHAR(50),
+    product_start_dt  DATETIME,
+    product_end_dt    DATETIME
+);
+
+IF OBJECT_ID ('bronze.crm_sales_details', 'U') IS NOT NULL
+	DROP TABLE bronze.crm_sales_details;
+CREATE TABLE bronze.crm_sales_details (
+    sd_ord_num       NVARCHAR(50),
+    sd_product_key   NVARCHAR(50),
+    sd_customer_id   INT,
+    sd_order_dt  INT,
+    sd_ship_dt   INT,
+    sd_due_dt    INT,
+    sd_sales     INT,
+    sd_quantity  INT,
+    sd_price     INT
+);
+
+IF OBJECT_ID ('bronze.erp_customer', 'U') IS NOT NULL
+	DROP TABLE bronze.erp_customer;
+CREATE TABLE bronze.erp_customer (
+    cid        NVARCHAR(50),
+    birthdate  DATE,
+    gender     NVARCHAR(50)
+);
+
+IF OBJECT_ID ('bronze.erp_cntry', 'U') IS NOT NULL
+	DROP TABLE bronze.erp_cntry;
+CREATE TABLE bronze.erp_cntry (
+    cid      NVARCHAR(50),
+    country  NVARCHAR(50)
+);
+
+IF OBJECT_ID ('bronze.erp_category', 'U') IS NOT NULL
+	DROP TABLE bronze.erp_category;
+CREATE TABLE bronze.erp_category (
+    id                NVARCHAR(50),
+    category          NVARCHAR(50),
+    subcategory       NVARCHAR(50),
+    maintenance       NVARCHAR(50)
