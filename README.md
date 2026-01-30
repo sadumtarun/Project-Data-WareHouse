@@ -46,8 +46,6 @@ The solution follows a layered data architecture (Bronze, Silver, Gold) to ensur
 
 - **ETL Pipelines**
 
-- **Overarching Principles**
-
 - **Data Architecture**
 
 
