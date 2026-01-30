@@ -26,7 +26,7 @@
 
 - All names must start with the source system name, and table names must match their original names without renaming.
 
-`<sourcesystem_entity>`
+**`<sourcesystem_entity>`**
 - `<sourcesystem>` - Name of the source system (e.g., `crm`, `erp`).
 - `<entity>` - Exact table name from the source system.
 
@@ -36,8 +36,8 @@
 
 - All names must use meaningful, business-aligned names for tables, starting with the category prefix.
 
-`<category_entity>`
-`category` - Describes the role of the table, such as
+**`<category_entity>`**
+- `category` - Describes the role of the table, such as
 
 **Example**
 
