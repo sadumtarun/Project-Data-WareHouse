@@ -96,9 +96,9 @@ The data structure outlines a **Medallion Architecture** **Bronze**, **Silver** 
 3. **Gold Layer** - The final refined stage, optimized for performance and specific business use cases.
 
 
+## Links
 
-
-
+**[Datasets](Datasets) -** Project dataset (csv files).
 
 
 
