@@ -95,12 +95,12 @@ The data structure outlines a **Medallion Architecture** **Bronze**, **Silver** 
 
 1. **Bronze Layer** - Acts as a landing zone. It stores the data exactly as it appears in the source (like CSV Files).
 
-2. **Silver Layer** - This is the "cleansing" stage where data is validated and made consistent.
+2. **Silver Layer** - This is the cleansing stage where data is validated and made consistent.
 
 3. **Gold Layer** - The final refined stage, optimized for performance and specific business use cases.
 
 
 ## ☍ Links
 
-**[Datasets](Datasets) -** Project CSV files.
+**[Datasets](Datasets) -** CSV files.
 
