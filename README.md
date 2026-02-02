@@ -75,9 +75,9 @@ The solution follows a layered data architecture (`Bronze`, `Silver` & `Gold`) t
 - **Build Gold Layer**
 
 
-## 🛠️ ETL Pipelines
+## 🛠️ ELT Pipelines
 
-The ETL process was carefully crafted to move and transform data across the Medallion layers:
+The ELT process was carefully crafted to move and transform data across the Medallion layers:
 
 **Extract from CSVs → Load to Bronze**
 
