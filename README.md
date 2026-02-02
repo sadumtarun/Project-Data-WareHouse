@@ -61,7 +61,7 @@ The solution follows a layered data architecture (`Bronze`, `Silver` & `Gold`) t
 
 - **Project Initilization**
 
-- **ETL Pipelines**
+- **ELT Pipelines**
 
 - **Data Architecture**
 
